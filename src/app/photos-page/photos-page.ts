@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Photo } from '../models/photo';
+import { PhotosService } from '../services/photos.service';
 
 @Component({
   selector: 'app-photos-page',
@@ -14,14 +15,25 @@ import { Photo } from '../models/photo';
   `,
   styles: ``
 })
-export class PhotosPage {
-  photos: Photo[] = [
-    {id: 1, name: "First", url: "https://via.placeholder.com/150", width: 150, height: 150},
-    {id: 2, name: "Second", url: "https://via.placeholder.com/300", width: 300, height: 300},
-  ];
 
+export class PhotosPage implements OnInit {
+  photos: Photo[] = [];
   isPhotosShowVisible: boolean = false;
   currentPhoto: Photo = {} as Photo;
+
+  constructor(private photosService: PhotosService) {}
+
+  ngOnInit() {
+    this.handleIndex();
+  }
+
+  handleIndex() {
+    console.log("handleIndex");
+    this.photosService.getPhotos().subscribe((response) => {
+      console.log(response);
+      this.photos = response;
+    });
+  }
 
   handleShow(photo: Photo) {
     console.log("handleShow", photo);
