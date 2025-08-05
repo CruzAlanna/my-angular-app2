@@ -7,6 +7,7 @@ import { PhotosService } from '../services/photos.service';
   standalone: false,
   template: `
     <main>
+      <app-photos-new (create)="handleCreate($event)"></app-photos-new>
       <app-photos-index [photos]="photos" (show)="handleShow($event)"></app-photos-index>
       <app-modal [show]="isPhotosShowVisible" (close)="isPhotosShowVisible = false">
         <app-photos-show [photo]="currentPhoto"></app-photos-show>
@@ -32,6 +33,13 @@ export class PhotosPage implements OnInit {
     this.photosService.getPhotos().subscribe((response) => {
       console.log(response);
       this.photos = response;
+    });
+  }
+
+  handleCreate(params: any) {
+    console.log("handleCreate", params);
+    this.photosService.createPhoto(params).subscribe((response) => {
+      this.photos.push(response);
     });
   }
 

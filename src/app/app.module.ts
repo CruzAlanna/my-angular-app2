@@ -10,6 +10,7 @@ import { Footer } from './footer/footer';
 import { PhotosIndexComponent } from './photos-index.component';
 import { ModalComponent } from './modal.component';
 import { PhotosShowComponent } from './photos-show.component';
+import { PhotosNewComponent } from './photos-new.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { PhotosShowComponent } from './photos-show.component';
     Footer,
     PhotosIndexComponent,
     ModalComponent,
-    PhotosShowComponent
+    PhotosShowComponent,
+    PhotosNewComponent
   ],
   imports: [
     BrowserModule,

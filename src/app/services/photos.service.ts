@@ -7,7 +7,7 @@ import { Photo } from '../models/photo';
   providedIn: 'root'
 })
 export class PhotosService {
-  private baseUrl = 'http://localhost:3000/photos.json';
+  private baseUrl = 'http://localhost:5092/api/photos';
   // 💡 For production: move this to environment.ts (e.g., environment.apiUrl)
   // 📂 Import paths: Use ./models/photo from same directory, ../models/photo from subdirectories
 
