@@ -26,12 +26,14 @@ import { Photo } from './models/photo';
         </div>
         <button type="submit">Update</button>
       </form>
+      <button (click)="destroy.emit(photo)">Destroy</button>
     </div>
   `
 })
 export class PhotosShowComponent implements OnChanges {
   @Input() photo: Photo = {} as Photo;
   @Output() update = new EventEmitter();
+  @Output() destroy = new EventEmitter<Photo>();
   editPhotoParams: Photo = {} as Photo;
 
   ngOnChanges() {
