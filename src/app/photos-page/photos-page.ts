@@ -10,7 +10,7 @@ import { PhotosService } from '../services/photos.service';
       <app-photos-new (create)="handleCreate($event)"></app-photos-new>
       <app-photos-index [photos]="photos" (show)="handleShow($event)"></app-photos-index>
       <app-modal [show]="isPhotosShowVisible" (close)="isPhotosShowVisible = false">
-        <app-photos-show [photo]="currentPhoto"></app-photos-show>
+        <app-photos-show [photo]="currentPhoto" (update)="handleUpdate($event)"></app-photos-show>
       </app-modal>
     </main>
   `,
@@ -47,5 +47,14 @@ export class PhotosPage implements OnInit {
     console.log("handleShow", photo);
     this.isPhotosShowVisible = true;
     this.currentPhoto = photo;
+  }
+
+  handleUpdate(event: any) {
+    console.log("handleUpdate", event);
+    const { photo, params } = event;
+    this.photosService.updatePhoto(photo.id, params).subscribe((response) => {
+      this.photos = this.photos.map(p => p.id === response.id ? response : p);
+      this.isPhotosShowVisible = false;
+    });
   }
 }

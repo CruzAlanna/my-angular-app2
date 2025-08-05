@@ -22,10 +22,10 @@ export class PhotosService {
   }
 
   updatePhoto(id: number, params: any): Observable<Photo> {
-    return this.http.patch<Photo>(`http://localhost:3000/photos/${id}.json`, params);
+    return this.http.put<Photo>(`${this.baseUrl}/${id}`, params);
   }
 
   deletePhoto(id: number): Observable<any> {
-    return this.http.delete(`http://localhost:3000/photos/${id}.json`);
+    return this.http.delete(`${this.baseUrl}/${id}`);
   }
 }
